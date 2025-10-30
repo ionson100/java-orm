@@ -142,7 +142,7 @@ public class MyTable extends Persistent implements IEventOrm {
     }
 }
 Configure.IsWriteConsole=true;
-new Configure(TypeDataBase.SQLITE, "assHool.db",null,null);
+new Configure(TypeDataBase.SQLITE, "data.db",null,null);
 try (ISession session = Configure.getSession()) {
     session.dropTableIfExists(MyTable.class);
     session.createTableIfNotExists(MyTable.class);
