@@ -1,0 +1,34 @@
+package org.orm;
+
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+
+ class CacheDictionary {
+
+    private CacheDictionary(){}
+
+    private static final Object lock = new Object();
+    private static final Map<String, CacheMetaData<?>> dic = new Hashtable<>();
+
+    public static CacheMetaData<?> getCacheMetaDataFromTableName(String tableName)  {
+        AtomicReference<CacheMetaData<?>> metaData= new AtomicReference<>();
+        dic.forEach((s, cacheMetaData) -> {
+            if(cacheMetaData.tableName.equals(tableName)){
+                metaData.set(cacheMetaData);
+            }
+        });
+        return metaData.get();
+    }
+
+    public static CacheMetaData<?> getCacheMetaData(Class<?> aClass,TypeDataBase typeDataBase)  {
+        if (dic.get(aClass.getName()) == null) {
+            synchronized (lock) {
+                if (dic.get(aClass.getName()) == null) {
+                    dic.put(aClass.getName(), new CacheMetaData(aClass,typeDataBase));
+                }
+            }
+        }
+        return dic.get(aClass.getName());
+    }
+}
