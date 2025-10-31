@@ -170,8 +170,7 @@ class CacheMetaData<T> {
                 if(appendCreateTable==null){
                     appendCreateTable="";
                 }
-                appendCreateTable =appendCreateTable+
-                        Objects.requireNonNull(currentClass.getAnnotation(MapAppendCommandCreateTable.class)).value()+System.lineSeparator();
+                appendCreateTable = new StringBuilder().append(appendCreateTable).append(Objects.requireNonNull(currentClass.getAnnotation(MapAppendCommandCreateTable.class)).value()).append(System.lineSeparator()).toString();
             }
             if(!isIAction){
                 isIAction=IEventOrm.class.isAssignableFrom(currentClass);

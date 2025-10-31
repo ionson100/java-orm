@@ -1,9 +1,10 @@
 plugins {
     id("java")
+
 }
 
 group = "org.orm"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -91,7 +92,8 @@ dependencies {
 
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    implementation("mysql:mysql-connector-java:8.0.33")
+    implementation(group = "com.mysql", name = "mysql-connector-j", version = "9.5.0")
+    //implementation("mysql:mysql-connector-java:9.5.0")
 
 //    // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
 //    implementation("com.microsoft.sqlserver:mssql-jdbc:13.2.1.jre11")

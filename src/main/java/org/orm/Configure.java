@@ -583,6 +583,9 @@ public class Configure implements ISession {
                 }
             }
             case MYSQL:{
+                if (o == null) {
+                    throw new RuntimeException("Error in the database");
+                }
                 return (long)o>0;
             }
             default:{

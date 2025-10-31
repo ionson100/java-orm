@@ -147,7 +147,7 @@ class UtilsCompound {
 
             case "byte": {
 
-                Integer myInt = new Integer(cursor.getInt(i));
+                Integer myInt = Integer.valueOf(cursor.getInt(i));
                 field.setByte(o, myInt.byteValue());
                 return;
             }
@@ -218,7 +218,7 @@ class UtilsCompound {
                     }
                     case POSTGRESQL: {
                         val = cursor.getBoolean(i);
-                        field.set(o, new Boolean(val));
+                        field.set(o, Boolean.valueOf(val));
                         return;
                     }
                     default: {
@@ -231,7 +231,7 @@ class UtilsCompound {
 
             case "Byte": {
 
-                Integer myInt = new Integer(cursor.getInt(i));
+                Integer myInt =  Integer.valueOf(cursor.getInt(i));
                 field.set(o, myInt.byteValue());
 
                 return;
@@ -359,7 +359,7 @@ class UtilsCompound {
 
             case "byte":
             case "Byte": {
-                Integer myInt = new Integer(cursor.getInt(i));
+                Integer myInt =  Integer.valueOf(cursor.getInt(i));
                 return myInt.byteValue();
             }
             case "boolean":
